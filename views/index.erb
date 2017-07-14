@@ -1,0 +1,39 @@
+<h1>Welcome to the To Do App</h1>
+
+<p>Create a new stylist:</p>
+<form action="/stylists" method="post">
+  <label for="name">Assign a name to your stylist:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add a Stylist</button>
+</form>
+
+<p>Add a client to any stylist:</p>
+
+<form action="/clients" method="post">
+  <label for="stylist_id">Selet a Stylist</label>
+  <select id="stylist_id" name="stylist_id" type="text">
+    <% @stylists.each() do |stylist| %>
+    <option value="<%= stylist.id() %>"><%= stylist.name() %></option>
+    <% end %>
+  </select>
+
+  <label for="description">Description of the client:</label>
+  <input id="description" type="text" name="description">
+
+  <button type="submit">Add a Client</button>
+</form>
+
+<% if @stylists.any?() %>
+<p>Click on a stylist to see her clients:</p>
+
+<ul>
+  <% @stylists.each do |stylist| %>
+  <li>
+    <a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a>
+  </li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no stylists yet!</p>
+<% end %>
