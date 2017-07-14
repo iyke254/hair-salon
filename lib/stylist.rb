@@ -18,20 +18,20 @@ class Stylist
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
+    result = DB.exec("INSERT INTO stylists (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first.fetch('id').to_i
   end
 
-  define_method(:==) do |another_list|
-    name.==(another_list.name).&(id.==(another_list.id))
+  define_method(:==) do |another_stylist|
+    name.==(another_stylist.name).&(id.==(another_stylist.id))
   end
 
   define_singleton_method(:find) do |id|
-    found_list = nil
-    List.all.each do |list|
-      found_list = list if list.id.==(id)
+    found_stylist = nil
+    Stylist.all.each do |stylist|
+      found_stylist = stylist if stylist.id.==(id)
     end
-    found_list
+    found_stylist
   end
 
   define_method(:tasks) do
