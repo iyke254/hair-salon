@@ -15,6 +15,15 @@ describe(Stylist) do
     	end
   	end
 
+  	describe('#id') do
+  		it('sets its ID when you save it') do
+  			stylist = Stylist.new(name: 'WonderWoman'. id: nil)
+  			stylist.save
+  			expect(stylist.id).to(be_an_instance_of(Integer))
+  		end
+  	end
+  			
+
 	describe('#save') do
 		it('saves stylist with name') do
 			test_stylist = Stylist.new({:name => 'WonderWoman', :id => nil})
