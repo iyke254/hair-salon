@@ -34,25 +34,25 @@ class Stylist
     found_stylist
   end
 
-  define_method(:tasks) do
-    list_tasks = []
-    tasks = DB.exec("SELECT * FROM tasks WHERE list_id = #{id};")
-    tasks.each do |task|
-      description = task.fetch('description')
-      list_id = task.fetch('list_id').to_i
-      list_tasks.push(Task.new(description: description, list_id: list_id))
+  define_method(:clients) do
+    stylist_clients = []
+    clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{id};")
+    clients.each do |client|
+      description = client.fetch('description')
+      stylist_id = client.fetch('list_id').to_i
+      stylist_clients.push(Client.new(description: description, stylist_id: stylist_id))
     end
-    list_tasks
+    stylist_clients
   end
 
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
     @id = id
-    DB.exec("UPDATE lists SET name = '#{@name}' WHERE id = #{@id};")
+    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{@id};")
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM lists WHERE id = #{id};")
-    DB.exec("DELETE FROM tasks WHERE list_id = #{id};")
+    DB.exec("DELETE FROM stylists WHERE id = #{id};")
+    DB.exec("DELETE FROM clients WHERE stylist_id = #{id};")
   end
 end
