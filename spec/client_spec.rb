@@ -64,3 +64,4 @@ describe(Client) do
       		expect(Client.get_client_group(2)).to(eq([new_client, new_client1]))
     	end
   	end
+  end
