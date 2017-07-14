@@ -17,6 +17,22 @@ describe(Stylist) do
 		end
 	end
 
+	describe('#==') do
+    	it('is the same stylist if the names of stylists are the same text') do
+     		test_stylist = Stylist.new({:name => 'Arya', :id => nil})
+      		new_stylist = Stylist.new({:name => 'Arya', :id => nil})
+      		expect(test_stylist).to(eq(new_stylist))
+    	end
+  	end
+
+	describe('.find') do
+    	it('returns a stylist based on their unique id value') do
+      		test_stylist = Stylist.new({:name => 'Arya', :id => nil})
+      		test_stylist.save()
+      		expect(Stylist.find(test_stylist.id())).to(eq(test_stylist))
+    	end
+  	end
+
 	describe('#update') do
 		it('lets you update stylists by name in the database')	do
 			test_stylist = Stylist.new({:name => "Hermoine", :id => nil})
@@ -26,4 +42,3 @@ describe(Stylist) do
 		end
 	end
 
-	
