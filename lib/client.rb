@@ -1,27 +1,27 @@
 class Client
-  attr_reader(:description, :list_id)
+  attr_reader(:name, :clients_id)
 
   define_method(:initialize) do |attributes|
-    @description = attributes.fetch(:description)
-    @stylist_id = attributes.fetch(:list_id)
+    @name = attributes.fetch(:name)
+    @clients_id = attributes.fetch(:clients_id).to_i()
   end
 
   define_singleton_method(:all) do
     returned_clients = DB.exec('SELECT * FROM clients;')
-    clientss = []
+    clients = []
     returned_clients.each do |client|
-      description = client.fetch('description')
-      stylist_id = client.fetch('list_id').to_i 
-      clients.push(Client.new(description: description, stylist_id: stylist_id))
+      name = client.fetch('name')
+      clients_id = client.fetch('clients_id').to_i 
+      clients.push(Client.new(name: name, clients_id: clients_id))
     end
     clients
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO clients (description, stylist_id) VALUES ('#{@description}', #{@stylist_id});")
+    DB.exec("INSERT INTO clients (name, clients_id) VALUES ('#{@name}', #{@clients_id});")
   end
 
   define_method(:==) do |another_client|
-    description.==(another_client.description).&(stylist_id.==(another_client.stylist_id))
+    name.==(another_client.name).&(clients_id.==(another_client.clients_id))
   end
-  end
+  end     

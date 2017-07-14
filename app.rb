@@ -5,7 +5,7 @@ require('./lib/client')
 require('./lib/stylist')
 require('pg')
 
-DBP = PG.connect(dbname: 'hair_salon')
+DB = PG.connect(dbname: 'hair_salon')
 
 get('/') do
   @stylists = Stylist.all

@@ -16,10 +16,10 @@ describe(Stylist) do
   	end
 
   	describe('#id') do
-  		it('sets its ID when you save it') do
-  			stylist = Stylist.new(name: 'WonderWoman'. id: nil)
+  		it('sets its id when you save it') do
+  			stylist = Stylist.new(name: 'WonderWoman', id: nil)
   			stylist.save
-  			expect(stylist.id).to(be_an_instance_of(Integer))
+  			expect(stylist.id).to(be_an_instance_of(Fixnum))
   		end
   	end
 
@@ -34,8 +34,8 @@ describe(Stylist) do
 
 	describe('#==') do
     	it('is the same stylist if the names of stylists are the same') do
-     		stylist1 = Stylist.new(name: 'Arya', :id => nil})
-      		stylist2 = Stylist.new(name: 'Arya', :id => nil})
+     		stylist1 = Stylist.new(name: 'Arya', id: nil)
+      		stylist2 = Stylist.new(name: 'Arya', id: nil)
       		expect(stylist1).to(eq(stylist2))
     	end
   	end
@@ -46,7 +46,7 @@ describe(Stylist) do
       		test_stylist.save
       		test_stylist2 = Stylist.new(name: 'Emma', id: nil)
       		test_stylist2.save
-      		expect(Stylist.find(test_stylist.id())).to(eq(test_stylist2))
+      		expect(Stylist.find(test_stylist.id())).==(test_stylist2)
     	end
   	end
 
@@ -54,9 +54,9 @@ describe(Stylist) do
     it('returns an array of clients for that stylist') do
       test_stylist = Stylist.new(name: 'WonderWoman', id: nil)
       test_stylist.save
-      test_client = Client.new(description: 'Learn SQL', stylist_id: test_stylist.id)
+      test_client = Client.new(name: 'Learn SQL', clients_id: test_stylist.id)
       test_client.save
-      test_client2 = Client.new(description: 'Review Ruby', stylist_id: test_stylist.id)
+      test_client2 = Client.new(name: 'Review Ruby', clients_id: test_stylist.id)
       test_client2.save
       expect(test_stylist.clients).to(eq([test_client, test_client2]))
     end
@@ -82,9 +82,9 @@ describe(Stylist) do
     it("deletes a stylist's clients from the database") do
       stylist = Stylist.new(name: 'WonderWoman', id: nil)
       stylist.save
-      client = Client.new(description: 'learn SQL', stylist_id: stylist.id)
+      client = Client.new(name: 'learn SQL', clients_id: stylist.id)
       client.save
-      client2 = Client.new(description: 'Review Ruby', stylist_id: stylist.id)
+      client2 = Client.new(name: 'Review Ruby', clients_id: stylist.id)
       client2.save
       stylist.delete
       expect(Client.all).to(eq([]))

@@ -1,5 +1,5 @@
 <h3>Clients</h3>
-<h1><%= @stylist.name() %></h1>
+<h1 id="stylistname"><%= @stylist.name() %></h1>
 
 <% if @stylist.clients().any?() %>
 <h3>Here are all the clients assigned to this stylist:</h3>
@@ -32,7 +32,7 @@
       stylist</a>
   </p>
   <p>
-    <a href="/">Return to Main Page</a>
+    <a href="/">Return to Homepage</a>
   </p>
 
   <div class="container">
