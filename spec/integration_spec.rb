@@ -3,7 +3,7 @@ require('./app')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
-describe('add new stylist', type: :feature}) do
+describe('add new stylist', type: :feature) do
   it('allows user to add a stylist and view page') do
     visit('/')
     fill_in('stylist_name', :with => 'Wonderwoman')
