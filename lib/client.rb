@@ -1,10 +1,12 @@
 class Client
   attr_reader(:name, :clients_id)
 
+# shows you attributes of the clients
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
     @clients_id = attributes.fetch(:clients_id).to_i()
   end
+
 
   define_singleton_method(:all) do
     returned_clients = DB.exec('SELECT * FROM clients;')
@@ -16,7 +18,7 @@ class Client
     end
     clients
   end
-
+# saves new clients to the db
   define_method(:save) do
     DB.exec("INSERT INTO clients (name, clients_id) VALUES ('#{@name}', #{@clients_id});")
   end

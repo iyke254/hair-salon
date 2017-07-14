@@ -32,13 +32,14 @@ describe('seeing details for a single Stylist', type: :feature) do
 		test_client.save
 		visit('/')
 		click_link("Hvedra")
-		expect(page.find("#stylistname").text).to eq "Hvedra"
+		expect(page).to have_content('Hvedra')
+		# expect(page.find('#stylist').text).to eq "Hvedra"
 	end	
 end
 
 describe('adding clients to a stylist', type: :feature) do
 	it('allows a user to add a client to a stylist') do
-		test_stylist = Stylist.new(name: 'Islanzadi')
+		test_stylist = Stylist.new(name: 'Islanzadi', id:nil)
 		test_stylist.save
 		visit("stylist/#{test_client.id}")
 		fill_in('Description', with: 'Learn SQL')
