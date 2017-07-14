@@ -22,13 +22,13 @@ describe(Stylist) do
   			expect(stylist.id).to(be_an_instance_of(Integer))
   		end
   	end
-  			
+
 
 	describe('#save') do
 		it('saves stylist with name') do
-			test_stylist = Stylist.new({:name => 'WonderWoman', :id => nil})
-			test_stylist.save()
-			expect(Stylist.all()).to(eq([test_stylist]))
+			stylist = Stylist.new(name: 'WonderWoman', :id => nil)
+			stylist.save
+			expect(Stylist.all()).to(eq([stylist]))
 		end
 	end
 
