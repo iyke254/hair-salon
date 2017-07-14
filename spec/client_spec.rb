@@ -43,3 +43,24 @@ describe(Client) do
       		expect(Client.find(test_client.id())).to(eq(test_client))
     	end
   	end
+
+  	describe('#update') do
+    	it('lets you update clients by name in the database') do
+     		test_client = Client.new({:name => 'Eragon', :id => nil, :stylist_id => 1})
+       		test_client.save()
+       		test_client.update({:name => 'Galbatorix'})
+       		expect(test_client.name()).to(eq('Galbatorix'))
+    	end
+   	end
+
+   	describe('.get_client_group') do
+       	it('returns all the clients of a stylist') do
+      		new_client = Client.new(:name => 'Brom', :id => nil, :stylist_id => 2)
+      		new_client.save()
+      		new_client1 = Client.new(:name => 'Nasuada', :id => nil, :stylist_id => 2)
+     		new_client1.save()
+      		new_client2 = Client.new(:name => 'Hrothgar', :id => nil, :stylist_id => 3)
+      		new_client2.save()
+      		expect(Client.get_client_group(2)).to(eq([new_client, new_client1]))
+    	end
+  	end
