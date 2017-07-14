@@ -26,17 +26,17 @@ describe(Stylist) do
 
 	describe('#save') do
 		it('saves stylist with name') do
-			stylist = Stylist.new(name: 'WonderWoman', :id => nil)
+			stylist = Stylist.new(name: 'WonderWoman', id: nil)
 			stylist.save
 			expect(Stylist.all()).to(eq([stylist]))
 		end
 	end
 
 	describe('#==') do
-    	it('is the same stylist if the names of stylists are the same text') do
-     		test_stylist = Stylist.new({:name => 'Arya', :id => nil})
-      		new_stylist = Stylist.new({:name => 'Arya', :id => nil})
-      		expect(test_stylist).to(eq(new_stylist))
+    	it('is the same stylist if the names of stylists are the same') do
+     		stylist1 = Stylist.new(name: 'Arya', :id => nil})
+      		stylist2 = Stylist.new(name: 'Arya', :id => nil})
+      		expect(stylist1).to(eq(stylist2))
     	end
   	end
 
